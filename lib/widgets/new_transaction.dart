@@ -8,7 +8,7 @@ import './adaptive_flat_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function addTx;
 
-  NewTransaction(this.addTx);
+  const NewTransaction(this.addTx);
 
   @override
   State<NewTransaction> createState() => _NewTransactionState();
@@ -53,7 +53,6 @@ class _NewTransactionState extends State<NewTransaction> {
         _selectedDate = pickedDate;
       });
     });
-    print('...');
   }
 
   @override
@@ -72,7 +71,7 @@ class _NewTransactionState extends State<NewTransaction> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               TextField(
-                decoration: InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Title'),
                 controller: _titleController,
                 onSubmitted: (_) => _submitData(),
                 /* onChanged: (val) {
@@ -80,7 +79,7 @@ class _NewTransactionState extends State<NewTransaction> {
                       } */
               ),
               TextField(
-                decoration: InputDecoration(labelText: 'Amount'),
+                decoration: const InputDecoration(labelText: 'Amount'),
                 controller: _amountController,
                 keyboardType: TextInputType.number,
                 onSubmitted: (_) => _submitData(),
@@ -102,11 +101,11 @@ class _NewTransactionState extends State<NewTransaction> {
                 ),
               ),
               ElevatedButton(
-                child: Text('Add Transaction'),
                 style: TextButton.styleFrom(
                   backgroundColor: Theme.of(context).primaryColor,
                 ),
                 onPressed: _submitData,
+                child: const Text('Add Transaction'),
               )
             ],
           ),

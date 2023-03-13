@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
@@ -31,15 +30,15 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.amber,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-            headline6: TextStyle(
+            headline6: const TextStyle(
               fontFamily: 'OpenSans',
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
-            button: TextStyle(color: Colors.white)),
+            button: const TextStyle(color: Colors.white)),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(
+                headline6: const TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -78,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(
         DateTime.now().subtract(
-          Duration(days: 7),
+          const Duration(days: 7),
         ),
       );
     }).toList();
@@ -104,8 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (_) {
         return GestureDetector(
           onTap: () {},
-          child: NewTransaction(_addNewTransaction),
           behavior: HitTestBehavior.opaque,
+          child: NewTransaction(_addNewTransaction),
         );
       },
     );
@@ -123,23 +122,23 @@ class _MyHomePageState extends State<MyHomePage> {
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text(
+            middle: const Text(
               'Personal Expenses',
             ),
             trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
               GestureDetector(
-                child: Icon(CupertinoIcons.add),
+                child: const Icon(CupertinoIcons.add),
                 onTap: () => _startAtNewTransaction(context),
               )
             ]),
           )
         : AppBar(
-            title: Text(
+            title: const Text(
               'Personal Expenses',
             ),
             actions: <Widget>[
               IconButton(
-                icon: Icon(Icons.add),
+                icon: const Icon(Icons.add),
                 onPressed: () => _startAtNewTransaction(context),
               )
             ],
@@ -202,8 +201,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     return Platform.isIOS
         ? CupertinoPageScaffold(
-            child: pageBody,
             navigationBar: appBar,
+            child: pageBody,
           )
         : Scaffold(
             appBar: appBar,
@@ -213,8 +212,8 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Platform.isIOS
                 ? Container()
                 : FloatingActionButton(
-                    child: Icon(Icons.add),
                     onPressed: () => _startAtNewTransaction(context),
+                    child: const Icon(Icons.add),
                   ),
           );
   }
